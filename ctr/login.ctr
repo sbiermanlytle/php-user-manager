@@ -1,0 +1,20 @@
+<?php
+//check if all fields are filled
+if(!empty($_POST['login'])
+ &&!empty($_POST['password'])){
+
+	//run login function
+	$results = $app->login(
+		$_POST['login'],
+		$_POST['password']);
+
+	//SUCCESS
+	if(empty($results)){
+		$dialog_title = "Login Success";
+		$dialog_msg = 'You are being redirected to the dashboard.';
+		$meta_refresh = '<meta http-equiv="refresh" content="2;/">';
+		include '../inc/dialog.inc';
+
+	} else include "../inc/login.inc";
+} else include "../inc/login.inc";
+?>
