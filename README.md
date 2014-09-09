@@ -60,20 +60,20 @@ View - <i>inc/</i><br>
 <h3>Installation</h3>
 
 1) Set up a new MYSQL database and run the code contained in 'db.sql'<br>
-~ NOTE: it would be wise to change the field labels, and especially the 'users' column name<br><br>
+~ NOTE: it would be wise to change the field labels, and especially the 'users' column name<br>
 
 2) Open 'inc/origin.inc' and set your database login credentials<br>
-~ NOTE: you can also change the timezone here if desired<br><br>
+~ NOTE: you can also change the timezone here if desired<br>
 
 3) Open 'obj/app.php' and customize the SITE_KEY and hostname<br>
-~ NOTE: also change the database labels if necessary<br><br>
+~ NOTE: also change the database labels if necessary<br>
 
 4) Open 'root/index.php' and customize the site title<br>
-~ NOTE: a head router can be written to make the title dynamic<br><br>
+~ NOTE: a head router can be written to make the title dynamic<br>
 
-5) Open 'inc/emails.inc' and customize the email sender<br><br>
+5) Open 'inc/emails.inc' and customize the email sender<br>
 
-6) Set up a new domain path pointing to the folder 'your_site/root/'<br><br>
+6) Set up a new domain path pointing to the folder 'your_site/root/'<br>
 
 7) Upload all php-user-manager files to the folder 'your_site'<br>
 
