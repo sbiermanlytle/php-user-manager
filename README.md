@@ -10,23 +10,27 @@ The application has a debugger that tracks and displays all data interactions an
 ---
 
 User Features
-~ sign in via email or username
-~ user data edit page
-~ password reset function
-~ 2-step registration and activation
+<ul>
+<li>~ sign in via email or username</li>
+<li>~ user data edit page</li>
+<li>~ password reset function</li>
+<li>~ 2-step registration and activation</li>
+</ul>
 
 Security Features
-~ email verification after registration
-~ REGEX email, username, and name validation
-~ customizable password hashing routine
-~ unique password salt for each user
-~ variable database column and field names
-~ inaccessable php files
-~ hidden debug logs
-~ 404 routing for all gaurded paths
-~ immune to SQL injection
-~ protection against Session Hijacking
-~ protection against Session Fixation
+<ul>
+<li>~ email verification after registration</li>
+<li>~ REGEX email, username, and name validation</li>
+<li>~ customizable password hashing routine</li>
+<li>~ unique password salt for each user</li>
+<li>~ variable database column and field names</li>
+<li>~ inaccessable php files</li>
+<li>~ hidden debug logs</li>
+<li>~ 404 routing for all gaurded paths</li>
+<li>~ immune to SQL injection</li>
+<li>~ protection against Session Hijacking</li>
+<li>~ protection against Session Fixation</li>
+</ul>
 
 ---
 
