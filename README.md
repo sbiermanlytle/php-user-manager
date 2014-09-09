@@ -9,15 +9,17 @@ The application has a debugger that tracks and displays all data interactions an
 
 ---
 
-User Features
-<ul><li>sign in via email or username</li>
+<h3>User Features</h3>
+<ul>
+<li>sign in via email or username</li>
 <li>user data edit page</li>
 <li>password reset function</li>
 <li>2-step registration and activation</li>
 </ul>
 
-Security Features
-<ul><li>email verification after registration</li>
+<h3>Security Features</h3>
+<ul>
+<li>email verification after registration</li>
 <li>REGEX email, username, and name validation</li>
 <li>customizable password hashing routine</li>
 <li>unique password salt for each user</li>
@@ -32,9 +34,9 @@ Security Features
 
 ---
 
-ARCV Design Paradigm
+<h2>ARCV Design Paradigm</h2>
 
-Application - obj/app.php
+Application - <i>obj/app.php</i><br>
 ~ One Application object is instantiated and utilized for all data retreival and manipulation
 
 Router - root/index.php
