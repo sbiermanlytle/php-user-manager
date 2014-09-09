@@ -63,21 +63,20 @@ View - <i>inc/</i><br>
 <li>Set up a new MYSQL database and run the code contained in 'db.sql'<br>
 ~ NOTE: it would be wise to change the field labels, and especially the 'users' column name</li>
 
-2) Open 'inc/origin.inc' and set your database login credentials
-~ NOTE: you can also change the timezone here if desired
+<li>Open 'inc/origin.inc' and set your database login credentials<br>
+~ NOTE: you can also change the timezone here if desired</li>
 
-3) Open 'obj/app.php' and customize the SITE_KEY and hostname
-~ NOTE: also change the database labels if necessary 
+<li>Open 'obj/app.php' and customize the SITE_KEY and hostname<br>
+~ NOTE: also change the database labels if necessary</li>
 
-4) Open 'root/index.php' and customize the site title
-~ NOTE: a head router can be written to make the title dynamic
+<li>Open 'root/index.php' and customize the site title<br>
+~ NOTE: a head router can be written to make the title dynamic</li>
 
-5) Open 'inc/emails.inc' and customize the email sender
+<li>Open 'inc/emails.inc' and customize the email sender</li>
 
-6) Set up a new domain path pointing to the folder 'your_site/root/'
+<li>Set up a new domain path pointing to the folder 'your_site/root/'</li>
 
-7) Upload all php-user-manager files to the folder 'your_site'
-
+<li>Upload all php-user-manager files to the folder 'your_site'</li>
 </ol>
 
 ---
