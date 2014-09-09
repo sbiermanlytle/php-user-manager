@@ -20,7 +20,7 @@ The application has a debugger that tracks and displays all data interactions an
 <h3>Security Features</h3>
 <ul>
 <li>email verification after registration</li>
-<li>REGEX email, username, and name validation</li>
+<li>regex email, username, and name validation</li>
 <li>customizable password hashing routine</li>
 <li>unique password salt for each user</li>
 <li>variable database column and field names</li>
@@ -59,7 +59,7 @@ View - <i>inc/</i><br>
 
 <h3>Installation</h3>
 
-1) Set up a new MYSQL database and run the code contained in 'db.sql'<br>
+1) Set up a new MySQL database and run the code contained in 'db.sql'<br>
 ~ NOTE: it would be wise to change the field labels, and especially the 'users' column name<br>
 
 2) Open 'inc/origin.inc' and set your database login credentials<br>
