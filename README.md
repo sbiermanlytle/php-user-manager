@@ -53,7 +53,7 @@ View - <i>inc/</i><br>
 <h3>Requirements</h3>
 
 ~ Server running PHP 5.4+ (may work with 5.3, but not tested)<br>
-~ MYSQL Database v5.5 (may work with 5.0, but not tested)
+~ MySQL Database v5.5 (may work with 5.0, but not tested)
 
 ---
 
