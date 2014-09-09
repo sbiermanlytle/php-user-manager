@@ -61,22 +61,22 @@ View - <i>inc/</i><br>
 
 <ol>
 <li>Set up a new MYSQL database and run the code contained in 'db.sql'<br>
-~ NOTE: it would be wise to change the field labels, and especially the 'users' column name</li>
+~ NOTE: it would be wise to change the field labels, and especially the 'users' column name</li><br>
 
 <li>Open 'inc/origin.inc' and set your database login credentials<br>
-~ NOTE: you can also change the timezone here if desired</li>
+~ NOTE: you can also change the timezone here if desired</li><br>
 
 <li>Open 'obj/app.php' and customize the SITE_KEY and hostname<br>
-~ NOTE: also change the database labels if necessary</li>
+~ NOTE: also change the database labels if necessary</li><br>
 
 <li>Open 'root/index.php' and customize the site title<br>
-~ NOTE: a head router can be written to make the title dynamic</li>
+~ NOTE: a head router can be written to make the title dynamic</li><br>
 
-<li>Open 'inc/emails.inc' and customize the email sender</li>
+<li>Open 'inc/emails.inc' and customize the email sender</li><br>
 
-<li>Set up a new domain path pointing to the folder 'your_site/root/'</li>
+<li>Set up a new domain path pointing to the folder 'your_site/root/'</li><br>
 
-<li>Upload all php-user-manager files to the folder 'your_site'</li>
+<li>Upload all php-user-manager files to the folder 'your_site'</li><br>
 </ol>
 
 ---
