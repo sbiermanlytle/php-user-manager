@@ -39,28 +39,29 @@ The application has a debugger that tracks and displays all data interactions an
 Application - <i>obj/app.php</i><br>
 ~ One Application object is instantiated and utilized for all data retreival and manipulation
 
-Router - root/index.php
+Router - <i>root/index.php</i><br>
 ~ One index file contains routers for all paths and head elements
 
-Controller - ctr/
+Controller - <i>ctr/</i><br>
 ~ All complex functions have seperate controllers that handle user input, function responses, and view routing
 
-View - inc/
+View - <i>inc/</i><br>
 ~ All modular HTML segments are contained in reusable view files
 
 ---
 
-Requirements
+<h3>Requirements</h3>
 
-~ Server running PHP 5.4+ (may work with 5.3, but not tested)
+~ Server running PHP 5.4+ (may work with 5.3, but not tested)<br>
 ~ MYSQL Database v5.5 (may work with 5.0, but not tested)
 
 ---
 
-Installation
+<h3>Installation</h3>
 
-1) Set up a new MYSQL database and run the code contained in 'db.sql'
-~ NOTE: it would be wise to change the field labels, and especially the 'users' column name
+<ol>
+<li>Set up a new MYSQL database and run the code contained in 'db.sql'<br>
+~ NOTE: it would be wise to change the field labels, and especially the 'users' column name</li>
 
 2) Open 'inc/origin.inc' and set your database login credentials
 ~ NOTE: you can also change the timezone here if desired
@@ -77,9 +78,11 @@ Installation
 
 7) Upload all php-user-manager files to the folder 'your_site'
 
+</ol>
+
 ---
 
-php-user-manager is licensed under the BSD 2-clause Open Source license
+<b>php-user-manager is licensed under the BSD 2-clause Open Source license</b>
 
 Copyright (c) 2014, Sebastian Bierman-Lytle
 All rights reserved.
