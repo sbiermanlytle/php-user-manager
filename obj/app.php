@@ -2,8 +2,8 @@
 class App{
 
 	//SITE SPECIFIC DATA - CHANGE THESE!!!!!!
-	private $REST_AUTH_SITE_KEY = 'a4ki3h58rfhf8fk39f39fm49vfo3k4';
-	private $hostname = "http://app-user.iiointeractive.com";
+	private $REST_AUTH_SITE_KEY = '000000000000000000000000000000'; //only use numbers and letters
+	private $hostname = "http://your_site";
 	//USER COLUMN LABEL
 	//PLEASE do not name your users column 'users' - change it to something unique
 	private $users_column = "users";

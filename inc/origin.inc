@@ -1,8 +1,8 @@
 <?php
-$dbhost = "basicUserApp.db.8247988.hostedresource.com";
-$dbname = "basicUserApp";
-$dbuser = "basicUserApp";
-$dbpass = "userApp@13";
+$dbhost = "xxxx";
+$dbname = "xxxx";
+$dbuser = "xxxx";
+$dbpass = "xxxx";
 $debug = true;
 
 $client_ip = $_SERVER['REMOTE_ADDR'];

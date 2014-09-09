@@ -2,7 +2,11 @@
 
 	//CREATE AND SEND EMAIL TO USER
 	function emailUser($email,$subject,$message){
-		$headers = "From: User App\r\n";
+
+		//the email sender
+		$FROM = 'php-user-manager';
+
+		$headers = "From: ".$FROM."\r\n";
 		$headers .= "MIME-Version: 1.0\r\n";
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 		$msg = '<html><body>';
