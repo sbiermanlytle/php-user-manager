@@ -3,7 +3,7 @@ php user manager
 
 This repo contains an open source php user management application. It is minimal but robust, and very easily extendable. 
 
-The software is NOT based on the MVC model. It is designed with a paradigm I call Application-Router-Controller-View, or ARCV.
+It is designed with a paradigm called Application-Router-Controller-View, or ARCV.
 
 The application has a debugger that tracks and displays all data interactions and failures, including SQL errors
 
