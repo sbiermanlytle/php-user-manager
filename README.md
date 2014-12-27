@@ -26,6 +26,7 @@ It is designed with the ARCV paradigm (Application-Router-Controller-View).
 <ul>
 <li>activation after email verification</li>
 <li>encrypted email links</li>
+<li>brute force cracking deterence</li>
 <li>php 5.4 password_hash &amp; password_verify</li>
 <li>inaccessable core files</li>
 <li>immune to SQL injection</li>
