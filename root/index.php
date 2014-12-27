@@ -1,41 +1,60 @@
 <?php
-$title = 'Basic User App';
-include "../inc/origin.inc";
+	include "../app.php";
+	include "../functions.php";
+	include "../controller.php";
+	include "../lib/password.php";
 
-$app->authenticate();
+	$client_ip = $_SERVER['REMOTE_ADDR'];
 
-//////////// HEAD ROUTER
-include "../inc/head.inc";
-$uri=substr($_SERVER['REQUEST_URI'],1);
-if(strrpos($uri,'?')!==FALSE){
-	$args=substr($uri,strrpos($uri,'?'));
-	$uri=substr($uri,0,strrpos($uri,'?'));
-}
-$app->log('_______');
-$app->log('ROUTING');
-$app->log('uri: '.$uri);
-$app->log('args: '.$args);
-?>
-</head>
-<body>
-
-<?php
-$normal_functions = array('login','edit','activate','forgot-password','register');
-//////////// BODY ROUTER
-foreach($normal_functions as $fn)
-	if( $uri==$fn ){
-		include '../ctr/'.$fn.'.ctr';
-		$fn_found = TRUE;
-		break;
+	// ROUTER
+	//////////////////////////////////////////////////
+	//seperate uri from args
+	$uri=substr($_SERVER['REQUEST_URI'],1);
+	if(strrpos($uri,'?')!==FALSE){
+		$args=substr($uri,strrpos($uri,'?'));
+		$uri=substr($uri,0,strrpos($uri,'?'));
 	}
-if(!$fn_found){
-	if($uri=='') include "../inc/homepage.inc";
-	else if($uri=="logout") $app->logout();
-	else echo "404";
-}
+	// NO DATABASE CONNECTION PATHS
+	//////////////////////////////////////////////////
+	if ( $uri == 'masterlog' ) : include '../view/masterlog.inc';
+	else : 
+	// DATABASE CONNECTION PATHS
+	/////////////////////////////////////////////////
+		if ( !($mysqli = db_connect( $dbhost, $dbuser, $dbpass, $dbname )) ) :
+			echo 'failed to connect to database'; die(); endif;
+		session_start();
 
-//show debug log
-if($debug) include "../inc/debug.inc"; 
+		// NO HEAD OR FOOT
+		/////////////////////////////////////////////
+		if ( $uri == 'init' && db_init($mysqli,$database) ) : ;
+		elseif( $uri == 'logout' ) : user_logout();
+		else :
+		// HEAD AND FOOT
+		/////////////////////////////////////////////
+			include "../view/head.inc";
+
+			    if ($uri == 'profile') 			: ctr_profile($mysqli);
+			elseif ($uri == 'register') 		: ctr_register($mysqli);
+			elseif ($uri == 'login') 			: ctr_login($mysqli);
+			elseif ($uri == 'forgot-password') 	: ctr_forgot_password();
+			elseif ($uri == 'change-password') 	: ctr_change_password($mysqli, $uri, $uri_seg);
+
+			else : $uri_seg = decode_uri($uri);
+				// ENCODED PATHS
+				/////////////////////////////////////
+				    if( $uri_seg[0] == $ACTIVATE_USER ) 
+				    	: ctr_activate_user( $mysqli, $uri_seg );
+
+				elseif($uri_seg[0] == $CHANGE_PASSWORD) 
+						: ctr_change_password_uri($uri);
+
+				elseif( $uri == '' ) : ctr_homepage();
+					
+				else : echo '404';
+				endif;
+			endif;
+			include "../view/foot.inc";
+		endif;
+		$mysqli->close();
+	endif;
 ?>
-</body>
-</html>

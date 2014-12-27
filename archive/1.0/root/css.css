@@ -1,0 +1,22 @@
+/*RESET*/
+html,body,p,a,fieldset,h1,h2,h3,h4,h5,h6{
+	padding:0;
+	margin:0;
+}
+fieldset{border:none}
+
+/*BASIC STYLES*/
+a{
+	display: block;
+	text-decoration:none;
+}
+
+/*DEBUG*/
+#debug_log{
+	font-family: monospace;
+	position: fixed;
+	bottom:5px;
+	left:5px; 
+}
+.error{color:red}
+.success{color:green}
