@@ -4,7 +4,7 @@ published 12/27/2014
 
 This repo contains an open source php user management application.
 
-It is designed with a paradigm called Application-Router-Controller-View, or ARCV.
+It is designed with the ARCV paradigm (Application-Router-Controller-View).
 
 ---
 
@@ -35,7 +35,7 @@ It is designed with a paradigm called Application-Router-Controller-View, or ARC
 
 ---
 
-<h2>ARCV Design Paradigm</h2>
+<h2>ARCV Design</h2>
 
 Application - <i>app.php</i><br>
 ~ The application file contains all data specific to the application, including domain info, database credentials, database configurations, encryption keys, regex validations, email templates, and common strings. The only file that requires editing for deployment of included functionality.
