@@ -1,5 +1,6 @@
-php user manager
-================
+php user manager 2.0
+====================
+published 12/27/2014
 
 This repo contains an open source php user management application.
 
