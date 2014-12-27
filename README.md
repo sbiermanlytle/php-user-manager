@@ -1,81 +1,73 @@
 php user manager
 ================
 
-This repo contains an open source php user management application. It is minimal but robust, and very easily extendable. 
+This repo contains an open source php user management application.
 
 It is designed with a paradigm called Application-Router-Controller-View, or ARCV.
 
-The application has a debugger that tracks and displays all data interactions and failures, including SQL errors
-
 ---
+
+<h3>Database Features</h3>
+<ul>
+<li>auto initialization</li>
+<li>update logging</li>
+</ul>
 
 <h3>User Features</h3>
 <ul>
-<li>sign in via email or username</li>
+<li>2-step registration</li>
+<li>sign in via email and password</li>
 <li>user data edit page</li>
-<li>password reset function</li>
-<li>2-step registration and activation</li>
+<li>forgot password function</li>
 </ul>
 
 <h3>Security Features</h3>
 <ul>
-<li>email verification after registration</li>
-<li>regex email, username, and name validation</li>
-<li>customizable password hashing routine</li>
-<li>unique password salt for each user</li>
-<li>variable database column and field names</li>
-<li>inaccessable php files</li>
-<li>hidden debug logs</li>
-<li>404 routing for all gaurded paths</li>
+<li>activation after email verification</li>
+<li>encrypted email links</li>
+<li>php 5.4 password_hash &amp; password_verify</li>
+<li>inaccessable core files</li>
 <li>immune to SQL injection</li>
-<li>protection against Session Hijacking</li>
-<li>protection against Session Fixation</li>
+<li>seperated logs for database updates, sql errors, and other errors</li>
+<li>masterlog path for realtime monitering</li>
 </ul>
 
 ---
 
 <h2>ARCV Design Paradigm</h2>
 
-Application - <i>obj/app.php</i><br>
-~ One Application object is instantiated and utilized for all data retreival and manipulation
+Application - <i>app.php</i><br>
+~ The application file contains all data specific to the application, including domain info, database credentials, database configurations, encryption keys, regex validations, email templates, and common strings. The only file that requires editing for deployment of included functionality.
 
 Router - <i>root/index.php</i><br>
-~ One index file contains routers for all paths and head elements
+~ The index file handles general templating and contains a router for all paths.
 
-Controller - <i>ctr/</i><br>
-~ All complex functions have seperate controllers that handle user input, function responses, and view routing
+Controller - <i>controller.php</i><br>
+~ Paths that utilize POST data, take parameters, or perform multiple functions have a controller function located in the controller file.
 
 View - <i>inc/</i><br>
-~ All modular HTML segments are contained in reusable view files
+~ All modular HTML/PHP segments are contained in view files.
 
 ---
 
 <h3>Requirements</h3>
 
-~ Server running PHP 5.4+ (may work with 5.3, but not tested)<br>
-~ MySQL Database v5.5 (may work with 5.0, but not tested)
+~ Server running PHP 5.4+ (may work with earlier versions, but not tested)<br>
+~ MySQL Database v5.5 (may work with other versions, but not tested)
 
 ---
 
 <h3>Installation</h3>
 
-1) Set up a new MySQL database and run the code contained in 'db.sql'<br>
-~ NOTE: it would be wise to change the field labels, and especially the 'users' column name<br>
+1) Create a new MySQL database<br>
 
-2) Open 'inc/origin.inc' and set your database login credentials<br>
-~ NOTE: you can also change the timezone here if desired<br>
+2) Rename 'app-default.php' to 'app.php'<br>
 
-3) Open 'obj/app.php' and customize the SITE_KEY and hostname<br>
-~ NOTE: also change the database labels if necessary<br>
+3) Open 'app.php' and customize the data<br>
 
-4) Open 'root/index.php' and customize the site title<br>
-~ NOTE: a head router can be written to make the title dynamic<br>
+4) Set up a new domain path pointing to the folder 'your_site/root/'<br>
 
-5) Open 'inc/emails.inc' and customize the email sender<br>
-
-6) Set up a new domain path pointing to the folder 'your_site/root/'<br>
-
-7) Upload all php-user-manager files to the folder 'your_site'<br>
+5) Upload all php-user-manager files to the folder 'your_site'<br>
 
 ---
 
