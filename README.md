@@ -31,7 +31,7 @@ It is designed with the ARCV paradigm (Application-Router-Controller-View).
 <li>inaccessable core files</li>
 <li>immune to SQL injection</li>
 <li>seperated logs for database updates, sql errors, and other errors</li>
-<li>masterlog path for realtime monitering</li>
+<li>masterlog path for realtime monitoring</li>
 </ul>
 
 ---
