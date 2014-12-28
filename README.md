@@ -34,6 +34,8 @@ It is designed with the ARCV paradigm (Application-Router-Controller-View).
 <li>masterlog path for realtime monitoring</li>
 </ul>
 
+<h4><b>NOTE:</b> POST data is not encrypted, SSL should be integrated to ensure communication security</h4>
+
 ---
 
 <h2>ARCV Design</h2>
