@@ -8,8 +8,6 @@ date_default_timezone_set('America/New_York');
 //ENCRYPTION KEYS
 //MK = 64 char hexadecimal
 $MK = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-//DL = 20 char hexadecimal
-$DL = "xxxxxxxxxxxxxxxxxxxx";
 
 //PATH KEYS (20 char hexadecimal)
 $ACTIVATE_USER = 'xxxxxxxxxxxxxxxxxxxx';

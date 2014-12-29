@@ -1,9 +1,5 @@
 <h2>Reset Password</h2>
-<?php 
-	$iv_size = get_iv_size();
-    $iv = create_iv($iv_size);
-    $k = substr(base64_encode($iv), 0, 43);
-?>
+<?php $k = str_replace(array("/","+"),"k",create_salt()); ?>
 <p>copy this key: <span><?=$k?></span></p>
 <p>it will only be valid for the next <?=$GLOBALS['PASSWORD_KEY_LIFETIME']?> minutes</p>
 <?php

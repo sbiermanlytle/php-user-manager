@@ -2,8 +2,7 @@
 /* ENCRYPTION
 *////////////////////////////////////////////////////////////
 	function encrypt($p,$k){
-		$iv_size = get_iv_size();
-    	$iv = create_iv($iv_size);
+    	$iv = create_iv();
     	$cipher = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, pack('H*', $k),
                                  $p, MCRYPT_MODE_CBC, $iv);
 		$cipher = $iv.$cipher;
@@ -19,19 +18,21 @@
 		return mcrypt_decrypt(MCRYPT_RIJNDAEL_256, pack('H*', $k),
                                 $cipher, MCRYPT_MODE_CBC, $iv_dec);
 	}
-	function encode_uri($l){
-		return rawurlencode(
-			encrypt($l,$GLOBALS['MK']));
-	}
 	function decode_uri($l){
-		return explode($GLOBALS['DL'],
-			decrypt(rawurldecode($l),$GLOBALS['MK']));
+		$decoded = explode("/",
+			decrypt($l,$GLOBALS['MK']));
+		for($i=0;$i<count($decoded);$i++)
+			$decoded[$i] = rawurldecode($decoded[$i]);
+		return $decoded;
+	}
+	function create_salt(){
+	    return substr(base64_encode(create_iv()), 0, 43);
+	}
+	function create_iv(){
+		return mcrypt_create_iv(get_iv_size(), MCRYPT_RAND);
 	}
 	function get_iv_size(){ 
 		return mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_CBC); 
-	}
-	function create_iv($size){
-		return mcrypt_create_iv($size, MCRYPT_RAND);
 	}
 
 /* DATABASE
@@ -122,7 +123,7 @@
 		elseif(!preg_match($GLOBALS['VALID_EMAIL'],$email))
 			array_push($results,'invalid email address');
 		elseif(user_exists( $mysqli, 'email', $email ))
-			array_push($results,'email address already in use');
+			array_push($results,'email address already registered');
 		return $results;
 	}
 	function validate_username( $results, $mysqli, $username  ){
@@ -143,12 +144,12 @@
 	function uri_prepare( $params ){
 		$uri = $params[0];
 		for( $i=1; $i<count($params); $i++ )
-			$uri .= $GLOBALS['DL'].$params[$i];
-		return $GLOBALS['DOMAIN_URL'].encode_uri($uri);
+			$uri .= "/".rawurlencode($params[$i]);
+		return $GLOBALS['DOMAIN_URL'].encrypt($uri,$GLOBALS['MK']);
 	}
 	function uri_ban_ip(){ 
 		//NOT CURRENTLY FUNCTIONAL *12/24/14
-		return encode_uri($GLOBALS['BAN_IP'].$GLOBALS['DL'].$GLOBALS['client_ip']);
+		return encrypt($GLOBALS['BAN_IP']."/".$GLOBALS['client_ip'],$GLOBALS['MK']);
 	}
 	function send_email( $to, $subject, $msg ){
 
