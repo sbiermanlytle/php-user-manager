@@ -1,5 +1,6 @@
 <?php
-
+/* WEB INTERFACE
+*/////////////////////////////////////////////////////
 function ctr_homepage(){
 	if( !empty($_SESSION['username']) ) :
 		echo 'logged in as '.$_SESSION['username'].'<br/>';
@@ -7,7 +8,6 @@ function ctr_homepage(){
 	else : echo '<a href="login">login</a>';
 	endif;
 }
-
 function ctr_profile( $mysqli ){
 
 	$results=array();
@@ -32,7 +32,6 @@ function ctr_profile( $mysqli ){
 
 	include "../view/profile.inc";
 }
-
 function ctr_register( $mysqli ){
 
 	if($_POST['name']
@@ -52,30 +51,20 @@ function ctr_register( $mysqli ){
 	else : include "../view/register.inc";
 	endif;
 }
-
 function ctr_login( $mysqli ){
 
 	if($_POST['email']
-	 ||$_POST['password'])
-		$results = user_login( $mysqli, 
+	 ||$_POST['password']) :
+		if( user_login( $mysqli, 
 			$_POST['email'],
-			$_POST['password']);
-	else $results=array("");
-
-	if(empty($results)) : 
-		echo 'welcome '.$_SESSION['username'];
-		$_SESSION['form_attempts'] = 0;
-	else : 
-		if(empty($_SESSION['form_attempts'])) 
-			$_SESSION['form_attempts'] = 1;
-		else $_SESSION['form_attempts']++;
-		if( $_SESSION['form_attempts'] > 3)
-			sleep($_SESSION['form_attempts']-2);
-
-		include "../view/login.inc";
+			$_POST['password']) ) :
+			echo 'welcome '.$_SESSION['username'];
+			return;
+		else : $result = 'invalid credentials';
+		endif;
 	endif;
+	include "../view/login.inc";
 }
-
 function ctr_forgot_password(){
 
 	if($_POST['email']) :
@@ -84,7 +73,6 @@ function ctr_forgot_password(){
 	else : include "../view/forgot-password.inc";
 	endif;
 }
-
 function ctr_change_password( $mysqli, $uri, $uri_seg ){
 
 	if($_POST['key']
@@ -115,7 +103,6 @@ function ctr_change_password( $mysqli, $uri, $uri_seg ){
 		include "../view/change-password.inc";
 	endif;
 }
-
 function ctr_activate_user( $mysqli, $uri_seg ){
 	if( user_activate($mysqli, 0, $uri_seg[1], 
 		$uri_seg[2], $uri_seg[3], 
@@ -123,9 +110,18 @@ function ctr_activate_user( $mysqli, $uri_seg ){
 		echo 'activation successful, welcome '.$uri_seg[1];
 	else echo 'account already active';
 }
-
 function ctr_change_password_uri($uri){
 	$results=array("");
 	include "../view/change-password.inc";
+}
+/* MOBILE INTERFACE
+*/////////////////////////////////////////////////////
+function ctr_get_user_data( $mysqli, $credentials ){
+	
+	if( user_login($mysqli, rawurldecode($credentials[0]), rawurldecode($credentials[1])) == "OK" ) :
+		echo $_SESSION['role']."/".$_SESSION['banned']."/".$_SESSION['username']."/"
+			.$_SESSION['name']."/".$_SESSION['created'];
+	else : echo 'NO';
+	endif;
 }
 ?>

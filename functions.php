@@ -275,9 +275,7 @@
 	}
 	function user_login( $mysqli, $email, $pass ){
 
-		$results = array();
-
-		if( empty($email) || empty($pass) ) : array_push($results,'invalid credentials');
+		if( empty($email) || empty($pass) ) : return false;
 		else :
 
 			$err_args = array( $mysqli, 'login', $email );
@@ -291,6 +289,7 @@
 				if( !$stmt->close() ) log_sql_error( $err_args );
 
 				if(password_verify($pass,$hash)) :
+					$_SESSION['form_attempts'] = 0;
 					$_SESSION['id'] = $id;
 					$_SESSION['role'] = $role;
 					$_SESSION['banned'] = $banned;
@@ -299,10 +298,15 @@
 					$_SESSION['name'] = $name;
 					$_SESSION['created'] = $created;
 					$_SESSION['updated'] = $updated;
-
-				else : array_push($results, 'invalid credentials');
+					return true;
+				else : 
+					if(empty($_SESSION['form_attempts'])) 
+						$_SESSION['form_attempts'] = 1;
+					else $_SESSION['form_attempts']++;
+					if( $_SESSION['form_attempts'] > 3)
+						sleep($_SESSION['form_attempts']-2);
+					return false;
 				endif;
-
 			else : log_sql_error( $err_args );
 			endif;
 		endif;

@@ -1,6 +1,6 @@
 <h2>Login</h2>
 <?php 
-	show_messages($results);
+	echo '<p>'.$result.'</p>';
 	html_form('login', array(
 		'email', array('password',array('type'=>'password'))
 	));

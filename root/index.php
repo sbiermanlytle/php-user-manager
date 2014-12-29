@@ -28,6 +28,23 @@
 		/////////////////////////////////////////////
 		if ( $uri == 'init' && db_init($mysqli,$database) ) : ;
 		elseif( $uri == 'logout' ) : user_logout();
+
+		elseif( $uri == 'test' ) :
+			echo '404';
+
+		// REMOTE APIs
+		/////////////////////////////////////////////
+		elseif ( substr($uri,0,6) == 'remote' ) :
+			header('Content-Type: text/plain');
+			$uri = substr($uri,7);
+
+			if ( substr($uri,0,5) == 'login' ) :
+				$uri = substr($uri,6);
+				ctr_get_user_data( $mysqli, explode("/", $uri) );
+
+			else : echo '404';
+			endif;
+
 		else :
 		// HEAD AND FOOT
 		/////////////////////////////////////////////
