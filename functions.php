@@ -193,6 +193,7 @@
 
 		$uri_change_password = uri_prepare( array( 
 			$GLOBALS['CHANGE_PASSWORD'],
+			time()+(60*$GLOBALS['PASSWORD_KEY_LIFETIME']),
 			$email,
 			$key
 		));
@@ -348,7 +349,10 @@
 		endif;
 		return 'password change '.$GLOBALS['FAILURE'];
 	}
-	function user_change_password_via_email( $mysqli, $email, $k, $uk, $username, $pass, $pass2 ){
+	function user_change_password_via_email( $mysqli, $expiration, $email, $k, $uk, $username, $pass, $pass2 ){
+
+		if( time() - $expiration > 0 )
+			return array('key has expired');
 
 		$results = array();
 

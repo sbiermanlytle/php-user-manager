@@ -4,7 +4,8 @@
     $iv = create_iv($iv_size);
     $k = substr(base64_encode($iv), 0, 43);
 ?>
-<p>copy and save this key: <span><?=$k?></span></p>
+<p>copy this key: <span><?=$k?></span></p>
+<p>it will only be valid for the next <?=$GLOBALS['PASSWORD_KEY_LIFETIME']?> minutes</p>
 <?php
 	html_form('forgot-password', array(
 		array('k', array('type'=>'hidden','no_label'=>true,

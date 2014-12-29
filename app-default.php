@@ -16,6 +16,9 @@ $ACTIVATE_USER = 'xxxxxxxxxxxxxxxxxxxx';
 $BAN_IP = 'xxxxxxxxxxxxxxxxxxxx';
 $CHANGE_PASSWORD = 'xxxxxxxxxxxxxxxxxxxx';
 
+//CONSTANTS
+$PASSWORD_KEY_LIFETIME = 5; //in minutes
+
 //DATABASE CREDENTIALS
 $dbhost = "xxxx";
 $dbname = "xxxx";

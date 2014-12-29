@@ -83,6 +83,7 @@ function ctr_change_password( $mysqli, $uri, $uri_seg ){
 		$results = user_change_password_via_email( $mysqli, 
 			$uri_seg[1],
 			$uri_seg[2],
+			$uri_seg[3],
 			$_POST['key'],
 			$_POST['username'],
 			$_POST['password'],
