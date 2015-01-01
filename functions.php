@@ -208,9 +208,13 @@
 	  		</br>
 	  		<p style="font-size:.8em">If you did not request to change your password, click this link to help ensure that your email does not get used illicitly again: <a href="'.uri_ban_ip().'">did not request to change my password</a></p>';
 
-		if(send_email_default_format( $email, $subject, $html ))
+		if(send_email_default_format( $email, $subject, $html )) :
 			log_sql_request( "password change", $email );
-		else log_sql_error( array($mysqli, "password change", $email.' | '.$key) );
+			return true;
+		else : 
+			log_sql_error( array($mysqli, "password change", $email.' | '.$key) );
+			return false;
+		endif;
 	}
 
 /* USER 
@@ -265,7 +269,7 @@
 				log_sql_error( $err_args );
 
 			if( !$stmt->execute() ) : log_sql_error( $err_args );
-			else : log_sql_new( $err_title, $err_data );
+			else : log_sql_new( $err_args[1], $err_args[2] );
 				return true;
 			endif;
 
