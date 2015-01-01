@@ -1,6 +1,6 @@
 php user manager 2.0+
 =====================
-updated 12/29/2014
+updated 12/31/2014
 
 This repo contains an open source LAMP user management application.
 
@@ -9,7 +9,7 @@ It is designed with the ARCV paradigm (Application-Router-Controller-View).
 ---
 <h3>new in 2.0+</h3>
 <ul>
-<li>remote login and data retreival API</li>
+<li>mobile API for remote login, data retreival, profile editing, password changing</li>
 </ul>
 
 ---
