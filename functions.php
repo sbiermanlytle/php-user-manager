@@ -18,12 +18,20 @@
 		return mcrypt_decrypt(MCRYPT_RIJNDAEL_256, pack('H*', $k),
                                 $cipher, MCRYPT_MODE_CBC, $iv_dec);
 	}
+	function decrypt_uri($l){
+		return decode_uri(decrypt($l,$GLOBALS['MK']));
+	}
 	function decode_uri($l){
-		$decoded = explode("/",
-			decrypt($l,$GLOBALS['MK']));
+		$decoded = explode("/", $l);
 		for($i=0;$i<count($decoded);$i++)
 			$decoded[$i] = rawurldecode($decoded[$i]);
 		return $decoded;
+	}
+	function encode_remote_response($data){
+		$response = "";
+		foreach( $data as $d )
+			$response.='/'.$d;
+		return $response;
 	}
 	function create_salt(){
 	    return substr(base64_encode(create_iv()), 0, 43);

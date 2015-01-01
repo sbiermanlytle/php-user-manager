@@ -1,15 +1,16 @@
-php user manager 2.0+
-=====================
-updated 12/31/2014
+php user manager 2.1
+====================
+updated 01/01/2014
 
-This repo contains an open source LAMP user management application.
+This repo contains an open source LAMP user management system with an integrated iOS application
 
 It is designed with the ARCV paradigm (Application-Router-Controller-View).
 
 ---
-<h3>new in 2.0+</h3>
+<h3>new in 2.1</h3>
 <ul>
 <li>mobile API for remote login, data retreival, profile editing, password changing</li>
+<li>integrated iOS application</li>
 </ul>
 
 ---
@@ -30,7 +31,10 @@ It is designed with the ARCV paradigm (Application-Router-Controller-View).
 
 <h3>Mobile Features</h3>
 <ul>
+<li>remote registration</li>
 <li>remote login and data retreival</li>
+<li>remote forgot password</li>
+<li>remote data editing</li>
 </ul>
 
 <h3>Security Features</h3>
@@ -45,7 +49,7 @@ It is designed with the ARCV paradigm (Application-Router-Controller-View).
 <li>masterlog path for realtime monitoring</li>
 </ul>
 
-<h4><b>NOTE:</b> POST data is not encrypted, SSL should be integrated to ensure communication security</h4>
+<h4><b>NOTE:</b> POST data is not encrypted, SSL should be integrated into the web app and into the iOS app to ensure communication security</h4>
 
 ---
 

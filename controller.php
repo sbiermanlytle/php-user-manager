@@ -118,11 +118,37 @@ function ctr_change_password_uri($uri){
 /* MOBILE INTERFACE
 */////////////////////////////////////////////////////
 function ctr_get_user_data( $mysqli, $credentials ){
-	
-	if( user_login($mysqli, rawurldecode($credentials[0]), rawurldecode($credentials[1])) == "OK" ) :
+	if( user_login($mysqli, $credentials[0], $credentials[1]) == "OK" )
 		echo $_SESSION['role']."/".$_SESSION['banned']."/".$_SESSION['username']."/"
 			.$_SESSION['name']."/".$_SESSION['created'];
-	else : echo 'NO';
-	endif;
+	else echo 'NO';
+}
+function ctr_remote_register( $mysqli, $data ){
+	$results = user_register( $mysqli,
+		$data[1],$data[0], $data[2],
+		$data[3],$data[3] );
+	if(empty($results)) echo 'OK';
+	else echo encode_remote_response($results);
+}
+function ctr_remote_forgot_password( $data ){
+	if(send_user_request_new_password_email($data[0],$data[1]))
+		echo "OK";
+	else echo 'The email submission'.$GLOBALS['FAILURE'];
+}
+function ctr_remote_password_change( $mysqli, $data ){
+	$results = user_change_password_via_profile(
+		$mysqli, $_SESSION['id'], $data[0],
+		$data[1], $data[2]);
+	if( $results[0] == "password changed" ) 
+		echo 'OK';
+	else echo encode_remote_response($results);
+	
+}
+function ctr_remote_edit( $mysqli, $data ){
+	$results = user_update($mysqli,$_SESSION['id'],
+		$data[0],$data[1],$data[2]);
+	if( $results[0] == 'profile updated' ) 
+		echo 'OK';
+	else echo encode_remote_response($results);
 }
 ?>

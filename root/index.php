@@ -37,76 +37,30 @@
 		elseif ( substr($uri,0,6) == 'remote' ) :
 			header('Content-Type: text/plain');
 			$uri = substr($uri,7);
+			$del = strpos($uri,"/");
+			$query = substr($uri,0,$del);
+			$data = decode_uri(substr($uri,$del+1));
+			if( $query != 'login' && empty($_SESSION['id']) ) :
+				echo 'You must login';
+			else : 
+				if ( $query == 'login' ) :
+					ctr_get_user_data( $mysqli, $data );
 
-			if ( substr($uri,0,5) == 'login' ) :
-				$uri = substr($uri,6);
-				ctr_get_user_data( $mysqli, explode("/", $uri) );
+				elseif ( $query == 'register' ) : 
+					ctr_remote_register( $mysqli, $data);
 
-			elseif ( substr($uri,0,8) == 'register' ) :
-				$uri = substr($uri,9);
-				$user_data = explode("/", $uri);
-				for($i=0;$i<count($user_data);$i++)
-					$user_data[$i] = rawurldecode($user_data[$i]);
-				$results = user_register( $mysqli,
-					$user_data[1],$user_data[0], $user_data[2],
-					$user_data[3],$user_data[3] );
+				elseif ( $query == 'fp' ) : 
+					ctr_remote_forgot_password( $data );
 
-				if(empty($results)) :
-					echo 'OK';
-				else :
-					$result = "";
-					foreach( $results as $r )
-						$result.='/'.$r;
-					echo $result;
+				elseif ( $query == 'pc' ) : 
+					ctr_remote_password_change( $mysqli, $data );
+
+				elseif ( $query == 'edit' ) :
+					ctr_remote_edit( $mysqli, $data );
+
+				else : echo '404';
 				endif;
-
-			elseif ( substr($uri,0,2) == 'fp' ) :
-				$uri = substr($uri,3);
-				$user_data = explode("/", $uri);
-				for($i=0;$i<count($user_data);$i++)
-					$user_data[$i] = rawurldecode($user_data[$i]);
-				if(send_user_request_new_password_email($user_data[0],$user_data[1])) :
-					echo "OK";
-				else : echo 'The email submission'.$GLOBALS['FAILURE'];
-				endif;
-
-			elseif ( substr($uri,0,4) == 'edit' ) :
-				$uri = substr($uri,5);
-				$user_data = explode("/", $uri);
-				for($i=0;$i<count($user_data);$i++)
-					$user_data[$i] = rawurldecode($user_data[$i]);
-
-				$results = array();
-
-				if($user_data[3] != "") :
-					$results = user_change_password_via_profile(
-						$mysqli, $_SESSION['id'], $user_data[3],
-						$user_data[4], $user_data[5]);
-					if( $results[0] != "password changed" ) :
-						$result = "";
-						foreach( $results as $r )
-							$result.='/'.$r;
-						echo $result;
-						$pass_change_fail = true;
-					endif;
-				endif;
-
-				$results = array_merge($results,user_update($mysqli,$_SESSION['id'],
-					$user_data[0],$user_data[1],$user_data[2]));
-				if($results[0]=='profile udpated'||$results[1]=='profile udpated') :
-					$result = "";
-					foreach( $results as $r )
-						$result.='/'.$r;
-					echo $result;
-				else :
-					if(empty($pass_change_fail)) :
-						echo 'OK';
-					endif;
-				endif;
-
-			else : echo '404';
 			endif;
-
 		else :
 		// HEAD AND FOOT
 		/////////////////////////////////////////////
@@ -118,7 +72,7 @@
 			elseif ($uri == 'forgot-password') 	: ctr_forgot_password();
 			elseif ($uri == 'change-password') 	: ctr_change_password($mysqli, $uri, $uri_seg);
 
-			else : $uri_seg = decode_uri($uri);
+			else : $uri_seg = decrypt_uri($uri);
 				// ENCODED PATHS
 				/////////////////////////////////////
 				    if( $uri_seg[0] == $ACTIVATE_USER ) 
