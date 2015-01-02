@@ -142,10 +142,9 @@ function ctr_remote_password_change( $mysqli, $data ){
 	if( $results[0] == "password changed" ) 
 		echo 'OK';
 	else echo encode_remote_response($results);
-	
 }
 function ctr_remote_edit( $mysqli, $data ){
-	$results = user_update($mysqli,$_SESSION['id'],
+	$results = user_update( $mysqli, $_SESSION['id'],
 		$data[0],$data[1],$data[2]);
 	if( $results[0] == 'profile updated' ) 
 		echo 'OK';

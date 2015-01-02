@@ -67,7 +67,7 @@
 					$query.=");";
 					echo '<p>'.$query.'</p>';
 					if($mysqli->query($query)) :
-						log_sql_new("`".$table."` table created");
+						log_sql_new("table created",$table);
 					else : 
 						log_sql_error( $err_args );
 						echo "<p>error creating '".$table."' table: ".$mysqli->error."</p>";
